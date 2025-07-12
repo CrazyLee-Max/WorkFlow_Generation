@@ -1,0 +1,51 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: workflow-generation-service
+  profiles:
+    active: dev
+
+# LangChain4j配置
+langchain4j:
+  open-ai:
+    chat-model:
+      # 使用DeepSeek API兼容OpenAI格式
+      base-url: https://api.deepseek.com/v1
+      api-key: sk-150d4a5bda724defa00da586bb6dbd48
+      model-name: deepseek-chat
+      temperature: 0.7
+      max-tokens: 2000
+      timeout: 60
+
+# 应用自定义配置
+workflow:
+  # 意图识别相关配置
+  intent:
+    confidence-threshold: 0.8
+    max-retry: 3
+  # 任务分解相关配置
+  decomposition:
+    max-steps: 10
+    variable-limit: 20
+
+# 日志配置
+logging:
+  level:
+    com.workflow: DEBUG
+    dev.langchain4j: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# 监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
