@@ -15,7 +15,7 @@ langchain4j:
     chat-model:
       # 使用DeepSeek API兼容OpenAI格式
       base-url: https://api.deepseek.com/v1
-      api-key: sk-150d4a5bda724defa00da586bb6dbd48
+      api-key: sk-xx
       model-name: deepseek-chat
       temperature: 0.7
       max-tokens: 2000
